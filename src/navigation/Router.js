@@ -4,13 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Characters from '../screens/characters'
 import Comics from '../screens/comics'
+import { useSelector, useDispatch } from "react-redux"
+
 
 
 
 
 
 const Router = () => {
-
+    const state = useSelector(state => state)
+    console.log("app", state)
     const Tab = createBottomTabNavigator();
 
     return (
