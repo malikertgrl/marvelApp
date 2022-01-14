@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
 
     seperatorStyle: { borderBottomWidth: 1, borderBottomColor: "gray" },
     container: { backgroundColor: Colors.cartColor },
-    textStyle: { color: "#fff9", padding: 5 },
+    textStyle: { color: Colors.white9, padding: 5 },
     renderItemContainer: {
 
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
         margin: 5,
-        backgroundColor: "#1d3557"
+        backgroundColor: Colors.cartColor
     }
 })
