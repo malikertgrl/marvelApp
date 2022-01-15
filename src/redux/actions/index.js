@@ -22,7 +22,7 @@ export const set_comics = (item) => (dispatch) => {
     });
 }
 
-export const set_loading = (val) => (dispatch) => {
+export const setLoading = (val) => (dispatch) => {
     dispatch({
         type: SET_LOADİNG,
         payload: val

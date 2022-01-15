@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const Spinner = () => {
-    const state = useSelector(state => state.SystemReducer)
-    const [loading, setLoading] = useState(false)
+    const { loading } = useSelector(state => state.SystemReducer)
+
 
     useEffect(() => {
-        console.log("state", state)
+        console.log("loading", loading)
     }, [])
 
     return (
         <View style={styles.container}>
-            {loading && <ActivityIndicator size="small" color="#0000ff" />}
+            {loading && <ActivityIndicator size="large" color="#0000ff" />}
         </View>
     )
 }
