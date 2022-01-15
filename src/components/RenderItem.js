@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, } from 'react-native'
 import { Colors } from '../constants'
+import { useNavigation } from '@react-navigation/native'
 
 
-const RenderItem = ({ item }) => {
-    // useEffect(() => {
-    //     console.log("item", item)
-    // }, [])
+const RenderItem = ({ item, onPress }) => {
+    // const navigation = useNavigation()
+
+
 
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
     return (
         <View style={[styles.renderItemContainer, { width: windowWidth / 2 - 10, }]}>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPress} >
                 <View style={{ alignItems: "center" }}>
                     <Text style={styles.textStyle}>{item.name}</Text>
                     <Image

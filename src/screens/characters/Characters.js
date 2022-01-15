@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, FlatList, StatusBar } from 'react-native'
-import { api } from '../../api'
 import { useSelector, useDispatch } from "react-redux"
 import { set_characters } from '../../redux/actions'
 import RenderItem from '../../components/RenderItem'
 import { Colors } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
 import SearchBar from '../../components/SearchBar'
+import api from "../../api"
 
 
-const Characters = () => {
+
+const Characters = ({ navigation }) => {
+
     const dispatch = useDispatch()
     const { characters, loading } = useSelector(state => state.SystemReducer)
     const [filteredData, setFilteredData] = useState([])
@@ -37,9 +39,8 @@ const Characters = () => {
 
 
     const getItem = () => {
-        fetch(api)
-            .then(response => response.json())
-            .then((data) => {
+        api.
+            allCharacters().then((data) => {
                 setFilteredData(data.data.results)
                 setMasterData(data.data.results)
                 dispatch(set_characters(data.data.results))
@@ -49,11 +50,14 @@ const Characters = () => {
 
     useEffect(() => {
         getItem()
+        // console.log("navigation", navigation.navigate)
     }, [])
 
     return (
         <View style={styles.container}>
+
             <StatusBar backgroundColor={Colors.backgroundColor} />
+
             <SearchBar
                 value={search}
                 placeHolder="Search Here..."
@@ -67,7 +71,13 @@ const Characters = () => {
                 data={filteredData}
                 renderItem={({ item }) => {
                     return (
-                        <RenderItem item={item} />
+                        <RenderItem
+                            item={item}
+                            onPress={() => navigation.navigate("CharacterDetails", { character: item })
+
+                            }
+
+                        />
                     )
                 }}
             />
