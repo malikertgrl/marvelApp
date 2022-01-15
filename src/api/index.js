@@ -1,3 +1,6 @@
+import { ApiUtils } from "./apiUtils"
+
+
 const hash = "c8d77f53230be0cb1d341aae737be02d"
 const apiKey = "8344701fa1edef1b10a4feb0ffe0d73f"
 
@@ -21,6 +24,7 @@ export default {
             "&hash=" +
             hash
         )
+            .then(ApiUtils.checkStatus)
             .then(response => response.json())
             .catch(e => e);
     },
@@ -35,6 +39,7 @@ export default {
             "&hash=" +
             hash
         )
+            .then(ApiUtils.checkStatus)
             .then(response => response.json())
             .catch(e => e);
 

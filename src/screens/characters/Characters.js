@@ -40,10 +40,15 @@ const Characters = ({ navigation }) => {
 
     const getItem = () => {
         api.
-            allCharacters().then((data) => {
-                setFilteredData(data.data.results)
-                setMasterData(data.data.results)
-                dispatch(set_characters(data.data.results))
+            allCharacters().then(response => {
+                if (response) {
+                    setFilteredData(response.data.results)
+                    setMasterData(response.data.results)
+                    dispatch(set_characters(response.data.results))
+                } else {
+                    console.log("allCharacter")
+                }
+
             })
             .catch(e => console.log(e))
     }
