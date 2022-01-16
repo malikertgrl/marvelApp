@@ -67,11 +67,6 @@ const Characters = ({ navigation }) => {
             {loading ? <Spinner />
                 :
                 <View style={styles.container}>
-
-
-
-
-
                     <SearchBar
                         value={search}
                         placeHolder="Search Here..."

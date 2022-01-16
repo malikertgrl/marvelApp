@@ -29,7 +29,6 @@ const RenderItem = ({ item, onPress }) => {
                     <Text style={styles.textStyle}>series:{item.series.returned}</Text>
                     <Text style={styles.textStyle}>stories:{item.stories.returned}</Text>
                     <Text style={styles.textStyle}>events:{item.events.returned}</Text>
-
                     <Text style={styles.textStyle} >{item.description.length > 5 ? `${item.description.substr(0, 35)}...` : <></>}</Text>
 
 

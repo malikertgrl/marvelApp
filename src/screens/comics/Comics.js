@@ -25,8 +25,8 @@ const Comics = ({ navigation }) => {
     const searchFilter = (text) => {
         if (text) {
             const newData = masterData.filter((item) => {
-                const itemData = item.name ?
-                    item.name.toUpperCase() :
+                const itemData = item.title ?
+                    item.title.toUpperCase() :
                     "".toUpperCase;
 
                 const textData = text.toUpperCase();
@@ -67,15 +67,10 @@ const Comics = ({ navigation }) => {
     }, [])
 
     return (
-        <View style={{ flex: 1, alignItems: "center", }}>
+        <View style={{ flex: 1, alignItems: "center", backgroundColor: Colors.backgroundColor }}>
             {loading ? <Spinner />
                 :
                 <View style={styles.container}>
-
-
-
-
-
                     <SearchBar
                         value={search}
                         placeHolder="Search Here..."
@@ -89,9 +84,9 @@ const Comics = ({ navigation }) => {
                         data={filteredData}
                         renderItem={({ item }) => {
                             return (
-                                <View style={[styles.renderItemContainer, { width: windowWidth / 2 - 10, height: windowHeight / 4 }]}>
+                                <View style={[styles.renderItemContainer, { width: windowWidth / 2 - 10, height: windowHeight / 3 }]}>
 
-                                    <TouchableOpacity  >
+                                    <TouchableOpacity onPress={() => navigation.navigate("ComicDetails", { comicId: item.id })} >
                                         <View style={{ alignItems: "center" }}>
                                             <Text style={styles.textStyle}>{item.title}</Text>
                                             <Image
@@ -102,14 +97,9 @@ const Comics = ({ navigation }) => {
                                             />
                                         </View>
                                         <View>
+                                            <Text style={styles.textStyle}>Sayfa Sayısı: {item.pageCount}</Text>
 
-                                            {/* <Text >{item.description && `\n${item.description}`}</Text> */}
-                                            {/* <Text style={styles.textStyle}>comics: {item.comics.returned}</Text>
-                                        <Text style={styles.textStyle}>series:{item.series.returned}</Text>
-                                        <Text style={styles.textStyle}>stories:{item.stories.returned}</Text>
-                     */}
-
-
+                                            <Text style={styles.textStyle} >{item.description?.length > 5 ? `${item.description.substr(0, 35)}...` : <></>}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>

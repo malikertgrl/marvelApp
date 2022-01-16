@@ -85,4 +85,19 @@ export default {
             .catch(e => e);
     },
 
+    // comicDetail: function (comicId) {
+    //     return fetch(
+    //         baseUrlComics +
+    //         comicId +
+    //         timestamp +
+    //         "&apikey=" +
+    //         apiKey +
+    //         "&hash=" +
+    //         hash
+    //     )
+    //         .then(ApiUtils.checkStatus)
+    //         .then(response => response.json())
+    //         .catch(e => e);
+
+    // }
 }
