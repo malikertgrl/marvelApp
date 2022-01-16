@@ -64,6 +64,7 @@ const Characters = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, alignItems: "center", }}>
+
             {loading ? <Spinner />
                 :
                 <View style={styles.container}>

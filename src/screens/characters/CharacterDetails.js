@@ -96,7 +96,9 @@ const CharacterDetails = ({ route }) => {
 
                                 </View>
                                 <View>
-                                    <CustomButton onPress={() => setIsShownMarvel(true)} />
+                                    <CustomButton
+                                        backgroundColor="#1d3557" // buraya bak bi 
+                                        onPress={() => setIsShownMarvel(true)} />
                                 </View>
                                 <View>
                                     <Panel

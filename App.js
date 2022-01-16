@@ -11,7 +11,8 @@ const App = () => {
 
   return (
     <Provider store={Store}>
-      <StatusBar backgroundColor={Colors.backgroundColor} />
+      {/* <StatusBar hidden={true} /> */}
+
       <Router />
 
     </Provider>

@@ -67,7 +67,8 @@ const Comics = ({ navigation }) => {
     }, [])
 
     return (
-        <View style={{ flex: 1, alignItems: "center", backgroundColor: Colors.backgroundColor }}>
+        <View style={{ flex: 1, alignItems: "center", backgroundColor: Colors.comicBackColor }}>
+
             {loading ? <Spinner />
                 :
                 <View style={styles.container}>
@@ -118,7 +119,7 @@ export default Comics
 
 const styles = StyleSheet.create({
     seperatorStyle: { borderBottomWidth: 1, borderBottomColor: "gray" },
-    container: { backgroundColor: Colors.backgroundColor },
+    container: { backgroundColor: Colors.comicBackColor },
     textStyle: { color: Colors.white9, padding: 5 },
     renderItemContainer: {
 
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin: 5,
-        backgroundColor: Colors.cartColor
+        backgroundColor: Colors.comicCartColor
     }
 
 })
