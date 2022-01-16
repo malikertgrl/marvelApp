@@ -8,7 +8,7 @@ const Spinner = () => {
 
 
     useEffect(() => {
-        console.log("loading", loading)
+        // console.log("loading", loading)
     }, [])
 
     return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, ScrollView, Image } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, Image, LogBox } from 'react-native'
 import api from '../../api';
 import { Colors } from "../../constants";
 import CustomButton from "../../components/CustomButton"
@@ -7,6 +7,7 @@ import { WebView } from 'react-native-webview';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoading } from "../../redux/actions"
 import Spinner from "../../components/Spinner"
+import Panel from "../../components/Panel"
 
 
 const CharacterDetails = ({ route }) => {
@@ -19,78 +20,105 @@ const CharacterDetails = ({ route }) => {
     const windowHeight = Dimensions.get('window').height;
 
 
-    const characterHero = route.params.character;
     useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         dispatch(setLoading(true)) // şimdilik resim vs i routes ile aldığım için ekran geldikten sonra tekrar spinner açıyor
 
         getItem()
+        // characterDetail && console.log(JSON.stringify(characterDetail, null, 4))
 
-        console.log("karakter id", characterHero.id)
-        console.log("loading", loading)
+
 
 
     }, [])
 
 
     const getItem = () => {
+        const characterId = route.params.characterId;
+
         api.
-            characterDertail(characterHero.id)
+            characterDertail(characterId)
             .then(response => {
                 if (response) {
+                    setCharacterDetail(response.data.results)
+                    // console.log(response.data.results)
+                    // console.log("ilk eleman", response.data.results[0])
                     dispatch(setLoading(false))
-                    setCharacterDetail(response.data.results[0])
-
                 } else {
                     dispatch(setLoading(false))
-                    console.log("characterDertail")
+                    console.log("characterDertail error")
                 }
+
+
             })
             .catch(e => console.log(e))
     }
 
 
     return (
-        // <ScrollView style={{ flex: 1, backgroundColor: Colors.backgroundColor }} >
-        <View style={{ flex: 1 }}>
+        // <ScrollView  >
+        <ScrollView style={{ backgroundColor: Colors.backgroundColor }} >
 
 
             {
-                loading ? <Spinner />
+                loading ?
+                    <View style={{ position: "relative", marginTop: windowHeight / 2 - 50 }}>
+                        <Spinner />
+                    </View>
                     :
                     isShownMarvel ?
                         <WebView
 
-                            source={{ uri: characterHero.urls[1].url }}
+                            source={{ uri: characterDetail[0].urls[1].url }}
                             style={{ width: windowWidth, height: windowHeight }}
                         /> :
-                        <View style={{ backgroundColor: Colors.backgroundColor, flex: 1, alignItems: "center", }}>
-                            <View style={{ margin: 20, alignItems: "center", width: windowWidth / 2 + 150, height: windowHeight / 2 + 130, backgroundColor: Colors.cartColor, borderRadius: 10 }}>
-                                <View style={{ alignItems: "center", margin: 5 }}>
-                                    <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{characterDetail.name} </Text>
-                                    <Image
-                                        style={{ borderRadius: 5, width: windowWidth / 2 + 50, height: windowHeight / 3, }} // resizeMode: "contain" 
-                                        source={{
-                                            uri: `${characterHero.thumbnail.path}.${characterHero.thumbnail.extension}`,
-                                        }}
-                                    />
+                        characterDetail.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
+                            <View style={{ flex: 1, backgroundColor: Colors.backgroundColor, flex: 1, alignItems: "center", }}>
+                                <View style={{ margin: 20, alignItems: "center", width: windowWidth / 2 + 170, height: windowHeight / 2 + 150, backgroundColor: Colors.cartColor, borderRadius: 10 }}>
+                                    <View style={{ alignItems: "center", }}>
+                                        <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{characterDetail[0].name} </Text>
+                                        <Image
+                                            style={{ borderRadius: 5, width: windowWidth / 2 + 160, height: windowHeight / 3, }} // resizeMode: "contain" 
+                                            source={{
+                                                uri: `${characterDetail[0].thumbnail.path}.${characterDetail[0].thumbnail.extension}`,
+                                            }}
+                                        />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.textStyle}>{characterDetail[0].description} </Text>
+                                        <Text style={styles.textStyle}>comics: {characterDetail[0].comics.returned} </Text>
+                                        <Text style={styles.textStyle}>stories: {characterDetail[0].stories.returned} </Text>
+                                        <Text style={styles.textStyle}>series: {characterDetail[0].series.returned}</Text>
+                                        <Text style={styles.textStyle}>events: {characterDetail[0].events.returned}</Text>
+
+
+                                    </View>
+
                                 </View>
                                 <View>
-                                    <Text style={styles.textStyle}>{characterHero.description} </Text>
-                                    <Text style={styles.textStyle}>comics: {characterHero.comics.returned} </Text>
-                                    <Text style={styles.textStyle}>stories: {characterHero.stories.returned} </Text>
-                                    <Text style={styles.textStyle}>series: {characterHero.series.returned}</Text>
-
+                                    <CustomButton onPress={() => setIsShownMarvel(true)} />
+                                </View>
+                                <View>
+                                    <Panel
+                                        data={characterDetail}
+                                        characterId={route.params.characterId}
+                                    />
+                                    <Text style={styles.textStyle}>{characterDetail[0].description} </Text>
+                                    <Text style={styles.textStyle}>comics: {characterDetail[0].comics.returned} </Text>
+                                    <Text style={styles.textStyle}>stories: {characterDetail[0].stories.returned} </Text>
+                                    <Text style={styles.textStyle}>series: {characterDetail[0].series.returned}</Text>
+                                    <Text style={styles.textStyle}>events: {characterDetail[0].events.returned}</Text>
+                                    {/* buraya panel yapıcaz */}
                                 </View>
 
                             </View>
-                            <View>
-                                <CustomButton onPress={() => setIsShownMarvel(true)} />
+                            :
+                            <View style={{ flex: 1, alignItems: "center" }}>
+                                <Text style={styles.textStyle}> bir hata ile karşılaşıldı...!</Text>
                             </View>
 
-                        </View>
-
             }
-        </View>
+        </ScrollView>
 
 
 
