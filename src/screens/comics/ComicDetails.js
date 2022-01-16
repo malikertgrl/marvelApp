@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const Comics = () => {
+const ComicDetails = () => {
     return (
-        <View style={{ flex: 1, }}>
-            <Text> aaaaaaaaaaaaaaaaaaaaaaaaa</Text>
+        <View>
+            <Text>details</Text>
         </View>
     )
 }
 
-export default Comics
+export default ComicDetails
 
 const styles = StyleSheet.create({})

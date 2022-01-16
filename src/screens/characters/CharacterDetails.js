@@ -69,7 +69,7 @@ const CharacterDetails = ({ route }) => {
                     isShownMarvel ?
                         <WebView
 
-                            source={{ uri: characterDetail[0].urls[1].url }}
+                            source={{ uri: characterDetail[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
                             style={{ width: windowWidth, height: windowHeight }}
                         /> :
                         characterDetail.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
@@ -103,11 +103,6 @@ const CharacterDetails = ({ route }) => {
                                         data={characterDetail}
                                         characterId={route.params.characterId}
                                     />
-                                    <Text style={styles.textStyle}>{characterDetail[0].description} </Text>
-                                    <Text style={styles.textStyle}>comics: {characterDetail[0].comics.returned} </Text>
-                                    <Text style={styles.textStyle}>stories: {characterDetail[0].stories.returned} </Text>
-                                    <Text style={styles.textStyle}>series: {characterDetail[0].series.returned}</Text>
-                                    <Text style={styles.textStyle}>events: {characterDetail[0].events.returned}</Text>
                                     {/* buraya panel yapıcaz */}
                                 </View>
 

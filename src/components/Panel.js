@@ -8,14 +8,18 @@ const Panel = ({ data, characterId }) => {
 
 
 
+    // const filterData = characterComics.filter(x => x.characters.name || console.log(x.characters.name))
+
+
+
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
 
     useEffect(() => {
         getItem()
-
         console.log({ data, characterId })
+
     }, [])
 
     const getItem = () => {
@@ -23,7 +27,7 @@ const Panel = ({ data, characterId }) => {
             characterComics(characterId)
             .then((response) => {
                 if (response) {
-                    // console.log("response111", response.data.count)
+                    console.log("response111", response.data.results)
                     setCharacterComics(response.data.results)
 
                 } else {
@@ -45,8 +49,8 @@ const Panel = ({ data, characterId }) => {
                             <TouchableOpacity>
                                 <Text style={styles.textStyle}>{item.title}</Text>
                                 <Text style={styles.textStyle}>{item.characters.items[0].name}</Text>
-                                <Text style={styles.textStyle}>{item.characters.items[1].name}</Text>
-                                <Text style={styles.textStyle}>{item.characters.items[2].name}</Text>
+                                {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
+                                {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
                                 {/* <FlatList
                                     data={characterComics}
                                     renderItem={({ item }) => {

@@ -5,6 +5,9 @@ const hash = "c8d77f53230be0cb1d341aae737be02d"
 const apiKey = "8344701fa1edef1b10a4feb0ffe0d73f"
 
 const baseUrl = "https://gateway.marvel.com/v1/public/characters"
+const baseUrlComics = "https://gateway.marvel.com/v1/public/comics"
+
+
 
 const timestamp = "?ts=1"
 
@@ -66,6 +69,20 @@ export default {
 
 
 
-    }
+    },
+
+    allComics: function () {
+        return fetch(
+            baseUrlComics +
+            timestamp +
+            "&apikey=" +
+            apiKey +
+            "&hash=" +
+            hash
+        )
+            .then(ApiUtils.checkStatus)
+            .then(response => response.json())
+            .catch(e => e);
+    },
 
 }

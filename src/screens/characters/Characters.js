@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { set_characters, setLoading } from '../../redux/actions'
 import RenderItem from '../../components/RenderItem'
 import { Colors } from '../../constants'
-import { TextInput } from 'react-native-gesture-handler'
 import SearchBar from '../../components/SearchBar'
 import api from "../../api"
 import Spinner from "../../components/Spinner"
@@ -71,7 +70,7 @@ const Characters = ({ navigation }) => {
 
 
 
-                    <StatusBar backgroundColor={Colors.backgroundColor} />
+
 
                     <SearchBar
                         value={search}

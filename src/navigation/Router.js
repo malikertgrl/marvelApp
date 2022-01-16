@@ -3,8 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CharacterStack from './CharacterStack'
-import Characters from '../screens/characters/Characters'
-import Comics from '../screens/comics'
+import ComicStack from './ComicStack'
 // import { Colors } from '../constants/Colors';
 
 
@@ -20,7 +19,7 @@ const Router = () => {
         <NavigationContainer >
             <Tab.Navigator initialRouteName='CharacterStack' screenOptions={{ headerShown: false }}>
                 <Tab.Screen name="CharacterStack" component={CharacterStack} />
-                <Tab.Screen name="Comics" component={Comics} />
+                <Tab.Screen name="ComicStack" component={ComicStack} />
             </Tab.Navigator>
 
         </NavigationContainer>
