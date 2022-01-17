@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, ScrollView, Image, LogBox } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, LogBox } from 'react-native'
 import api from '../../api';
-import { Colors } from "../../constants";
+import { Colors, Layout } from "../../constants";
 import CustomButton from "../../components/CustomButton"
 import { WebView } from 'react-native-webview';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,8 +16,6 @@ const CharacterDetails = ({ route }) => {
     const [characterDetail, setCharacterDetail] = useState([])
     const [isShownMarvel, setIsShownMarvel] = useState(false)
 
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
 
 
     useEffect(() => {
@@ -62,7 +60,7 @@ const CharacterDetails = ({ route }) => {
 
             {
                 loading ?
-                    <View style={{ position: "relative", marginTop: windowHeight / 2 - 50 }}>
+                    <View style={{ position: "relative", marginTop: Layout.windowHeight / 2 - 50 }}>
                         <Spinner />
                     </View>
                     :
@@ -70,15 +68,15 @@ const CharacterDetails = ({ route }) => {
                         <WebView
 
                             source={{ uri: characterDetail[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
-                            style={{ width: windowWidth, height: windowHeight }}
+                            style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                         /> :
                         characterDetail.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
                             <View style={{ flex: 1, backgroundColor: Colors.backgroundColor, flex: 1, alignItems: "center", }}>
-                                <View style={{ margin: 20, alignItems: "center", width: windowWidth / 2 + 170, height: windowHeight / 2 + 150, backgroundColor: Colors.cartColor, borderRadius: 10 }}>
+                                <View style={{ margin: 20, alignItems: "center", width: Layout.windowWidth / 2 + 170, height: Layout.windowHeight / 2 + 150, backgroundColor: Colors.cartColor, borderRadius: 10 }}>
                                     <View style={{ alignItems: "center", }}>
                                         <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{characterDetail[0].name} </Text>
                                         <Image
-                                            style={{ borderRadius: 5, width: windowWidth / 2 + 160, height: windowHeight / 3, }} // resizeMode: "contain" 
+                                            style={{ borderRadius: 5, width: Layout.windowWidth / 2 + 160, height: Layout.windowHeight / 3, }} // resizeMode: "contain" 
                                             source={{
                                                 uri: `${characterDetail[0].thumbnail.path}.${characterDetail[0].thumbnail.extension}`,
                                             }}

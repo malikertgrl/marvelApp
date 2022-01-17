@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Dimensions, ScrollView, Image } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native'
 import api from '../../api';
 import { WebView } from 'react-native-webview';
 import Spinner from "../../components/Spinner";
-import { Colors } from "../../constants";
+import { Colors, Layout } from "../../constants";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoading } from "../../redux/actions"
 import CustomButton from '../../components/CustomButton';
@@ -17,9 +17,6 @@ const ComicDetails = ({ route }) => {
     const [isShownComics, setIsShownComics] = useState(false)
 
 
-
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
 
     useEffect(() => {
         dispatch(setLoading(true))
@@ -53,7 +50,7 @@ const ComicDetails = ({ route }) => {
 
             {
                 loading ?
-                    <View style={{ position: "relative", marginTop: windowHeight / 2 - 50 }}>
+                    <View style={{ position: "relative", marginTop: Layout.windowHeight / 2 - 50 }}>
                         <Spinner />
                     </View>
                     :
@@ -62,17 +59,17 @@ const ComicDetails = ({ route }) => {
                             <WebView
 
                                 source={{ uri: comicDetails[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
-                                style={{ width: windowWidth, height: windowHeight }}
+                                style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                             />
                         </View>
                         :
                         comicDetails.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
                             <View style={{ flex: 1, backgroundColor: Colors.comicBackColor, flex: 1, alignItems: "center", }}>
-                                <View style={{ margin: 20, alignItems: "center", width: windowWidth / 2 + 170, height: windowHeight / 2 + 150, backgroundColor: Colors.comicCartColor, borderRadius: 10 }}>
+                                <View style={{ margin: 20, alignItems: "center", width: Layout.windowWidth / 2 + 170, height: Layout.windowHeight / 2 + 150, backgroundColor: Colors.comicCartColor, borderRadius: 10 }}>
                                     <View style={{ alignItems: "center", }}>
                                         <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{comicDetails[0].title} </Text>
                                         <Image
-                                            style={{ borderRadius: 5, width: windowWidth / 2 + 160, height: windowHeight / 3, }} // resizeMode: "contain" 
+                                            style={{ borderRadius: 5, width: Layout.windowWidth / 2 + 160, height: Layout.windowHeight / 3, }} // resizeMode: "contain" 
                                             source={{
                                                 uri: `${comicDetails[0].thumbnail.path}.${comicDetails[0].thumbnail.extension}`,
                                             }}

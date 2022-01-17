@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, } from 'react-native'
-import { Colors } from '../constants'
+import { StyleSheet, Text, View, Image, TouchableOpacity, } from 'react-native'
+import { Colors, Layout } from '../constants'
 
 
 const RenderItem = ({ item, onPress }) => {
@@ -8,16 +8,14 @@ const RenderItem = ({ item, onPress }) => {
 
 
 
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
     return (
-        <View style={[styles.renderItemContainer, { width: windowWidth / 2 - 10, }]}>
+        <View style={[styles.renderItemContainer, { width: Layout.windowWidth / 2 - 10, }]}>
 
             <TouchableOpacity onPress={onPress} >
                 <View style={{ alignItems: "center" }}>
                     <Text style={styles.textStyle}>{item.name}</Text>
                     <Image
-                        style={{ borderRadius: 5, width: windowWidth / 2 - 30, height: windowHeight / 6, }} // resizeMode: "contain" 
+                        style={{ borderRadius: 5, width: Layout.windowWidth / 2 - 30, height: Layout.windowHeight / 6, }} // resizeMode: "contain" 
                         source={{
                             uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
                         }}

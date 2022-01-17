@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, FlatList, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native'
 import { useSelector, useDispatch } from "react-redux"
 import { set_characters, setLoading, set_comics } from '../../redux/actions'
-import { Colors } from '../../constants'
+import { Colors, Layout } from '../../constants'
 import SearchBar from '../../components/SearchBar'
 import api from "../../api"
 import Spinner from "../../components/Spinner"
@@ -19,8 +19,6 @@ const Comics = ({ navigation }) => {
     const [search, setSearch] = useState("")
 
 
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
 
     const searchFilter = (text) => {
         if (text) {
@@ -85,13 +83,13 @@ const Comics = ({ navigation }) => {
                         data={filteredData}
                         renderItem={({ item }) => {
                             return (
-                                <View style={[styles.renderItemContainer, { width: windowWidth / 2 - 10, height: windowHeight / 3 }]}>
+                                <View style={[styles.renderItemContainer, { width: Layout.windowWidth / 2 - 10, height: Layout.windowHeight / 3 }]}>
 
                                     <TouchableOpacity onPress={() => navigation.navigate("ComicDetails", { comicId: item.id })} >
                                         <View style={{ alignItems: "center" }}>
                                             <Text style={styles.textStyle}>{item.title}</Text>
                                             <Image
-                                                style={{ borderRadius: 5, width: windowWidth / 2 - 30, height: windowHeight / 6, }} // resizeMode: "contain" 
+                                                style={{ borderRadius: 5, width: Layout.windowWidth / 2 - 30, height: Layout.windowHeight / 6, }} // resizeMode: "contain" 
                                                 source={{
                                                     uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
                                                 }}
