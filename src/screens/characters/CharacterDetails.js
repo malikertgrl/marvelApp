@@ -54,8 +54,8 @@ const CharacterDetails = ({ route }) => {
 
 
     return (
-        // <ScrollView  >
-        <ScrollView style={{ backgroundColor: Colors.backgroundColor }} >
+        // <ScrollView  > //scroolView içerisinde webView çalışmıyor
+        <ScrollView style={{ flex: 1, backgroundColor: Colors.backgroundColor }} >
 
 
             {
@@ -66,8 +66,9 @@ const CharacterDetails = ({ route }) => {
                     :
                     isShownMarvel ?
                         <WebView
-
-                            source={{ uri: characterDetail[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
+                            startInLoadingState={() => dispatch(setLoading(true))}
+                            onLoad={() => dispatch(setLoading(false))}
+                            source={{ uri: characterDetail[0].urls[1].url }} // url ile marvel profiline gidebiliyoruz
                             style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                         /> :
                         characterDetail.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
@@ -101,7 +102,7 @@ const CharacterDetails = ({ route }) => {
                                 <View>
                                     <Panel
                                         data={characterDetail}
-                                        characterId={route.params.characterId}
+                                        id={route.params.characterId}
                                     />
                                     {/* buraya panel yapıcaz */}
                                 </View>

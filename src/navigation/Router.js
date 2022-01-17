@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CharacterStack from './CharacterStack'
 import ComicStack from './ComicStack'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-// import { Colors } from '../constants/Colors';
+import { Colors } from '../constants/Colors';
 
 
 
@@ -19,29 +19,24 @@ const Router = () => {
     return (
         <NavigationContainer >
             <Tab.Navigator initialRouteName='CharacterStack' screenOptions={
-                //     ({ route }) => ({
-                //     tabBarIcon: ({ focused, color, size }) => {
-                //         let iconName;
+                { headerShown: false, }}>
 
-                //         if (route.name === 'CharacterStack') {
-                //             iconName = focused
-                //                 ? 'book'
-                //                 : 'book-open';
-                //         } else if (route.name === 'ComicStack') {
-                //             iconName = focused ? 'book'
-                //                 : 'book-open';;
-                //         }
+                <Tab.Screen name="CharacterStack" component={CharacterStack} options={{
+                    tabBarLabel: 'Karakter',
+                    tabBarActiveTintColor: "#1d3557",
 
-                //         // You can return any component that you like here!
-                //         return <FontAwesome5 name={iconName} size={size} color={color} />;
-                //     },
-                //     tabBarActiveTintColor: 'tomato',
-                //     tabBarInactiveTintColor: 'gray',
-                // }),
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome5 name="user-shield" color={color} size={size} />
+                    ),
+                }} />
+                <Tab.Screen name="ComicStack" component={ComicStack} options={{
+                    tabBarLabel: 'Çizgi Roman',
+                    tabBarActiveTintColor: "#7f0000",
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome5 name="book-open" color={color} size={size} />
+                    ),
 
-                { headerShown: false }}>
-                <Tab.Screen name="CharacterStack" component={CharacterStack} />
-                <Tab.Screen name="ComicStack" component={ComicStack} />
+                }} />
             </Tab.Navigator>
 
         </NavigationContainer>

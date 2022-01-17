@@ -99,5 +99,37 @@ export default {
             .then(response => response.json())
             .catch(e => e);
 
+    },
+    comicCreatores: function (comicId) {
+        return fetch(
+            baseUrlComics + "/" +
+            comicId +
+            "creators" +
+            timestamp +
+            "&apikey=" +
+            apiKey +
+            "&hash=" +
+            hash
+        )
+            .then(ApiUtils.checkStatus)
+            .then(response => response.json())
+            .catch(e => e);
+
+    },
+    comicCharacter: function (comicId) {
+        return fetch(
+            baseUrlComics + "/" +
+            comicId +
+            "characters" +
+            timestamp +
+            "&apikey=" +
+            apiKey +
+            "&hash=" +
+            hash
+        )
+            .then(ApiUtils.checkStatus)
+            .then(response => response.json())
+            .catch(e => e);
+
     }
 }

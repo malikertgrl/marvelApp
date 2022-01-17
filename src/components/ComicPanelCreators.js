@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react
 import api from '../api'
 import { Colors, Layout } from "../constants"
 
-const Panel = ({ data, id, }) => {
-    const [characterComics, setCharacterComics] = useState([])
+const ComicPanelCreators = ({ data, id, where }) => {
+    const [comicCreators, setComicCreators] = useState([])
 
 
 
-    // const filterData = characterComics.filter(x => x.characters.name || console.log(x.characters.name))
+    // const filterData = comicCreators.filter(x => x.characters.name || console.log(x.characters.name))
 
 
 
@@ -16,21 +16,21 @@ const Panel = ({ data, id, }) => {
 
     useEffect(() => {
         getItem()
-        console.log("id", id,)
+        console.log("id", id, where)
 
     }, [])
 
     const getItem = () => {
 
         api.
-            characterComics(id)
+            comicCreatores(id)
             .then((response) => {
                 if (response) {
                     // console.log("response111", response.data.results)
-                    setCharacterComics(response.data.results)
+                    setComicCreators(response.data.results)
 
                 } else {
-                    console.log("characterComics error")
+                    console.log("comicCreators error")
                 }
             })
     }
@@ -40,18 +40,18 @@ const Panel = ({ data, id, }) => {
             <FlatList
                 horizontal={true}
                 keyExtractor={item => item.id}
-                data={characterComics}
+                data={comicCreators}
                 renderItem={({ item }) => {
                     return (
                         <View style={[styles.renderItemContainer, { height: Layout.windowHeight / 4, width: Layout.windowWidth / 2 + 100, }]}>
 
                             <TouchableOpacity>
-                                <Text style={styles.textStyle}>{item.title}</Text>
-                                <Text style={styles.textStyle}>{item.characters.items[0].name}</Text>
+                                <Text style={styles.textStyle}>{item.fullName}</Text>
+                                {/* <Text style={styles.textStyle}>{item.characters.items[0].name}</Text> */}
                                 {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
                                 {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
                                 {/* <FlatList
-                                    data={characterComics}
+                                    data={comicCreators}
                                     renderItem={({ item }) => {
                                         return (
                                             <View>
@@ -94,7 +94,7 @@ const Panel = ({ data, id, }) => {
     )
 }
 
-export default Panel
+export default ComicPanelCreators
 
 const styles = StyleSheet.create({
     seperatorStyle: { borderBottomWidth: 1, borderBottomColor: "gray" },
@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
         // alignItems: "center",
         // justifyContent: "center",
         margin: 5,
-        backgroundColor: Colors.cartColor
+        backgroundColor: Colors.comicCartColor
     }
 })

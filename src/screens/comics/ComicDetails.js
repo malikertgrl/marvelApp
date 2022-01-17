@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, LogBox } from 'react-native'
 import api from '../../api';
 import { WebView } from 'react-native-webview';
 import Spinner from "../../components/Spinner";
@@ -7,6 +7,7 @@ import { Colors, Layout } from "../../constants";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoading } from "../../redux/actions"
 import CustomButton from '../../components/CustomButton';
+import Panel from '../../components/Panel';
 
 
 
@@ -19,6 +20,7 @@ const ComicDetails = ({ route }) => {
 
 
     useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         dispatch(setLoading(true))
         console.log("comicsID", route.params.comicId)
         getItem()
@@ -44,7 +46,7 @@ const ComicDetails = ({ route }) => {
     }
     // aşağıdaki komponent scrollview olduğunda webView doğru çalışmıyor 
     return (
-        <View style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
+        <ScrollView style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
 
 
 
@@ -57,7 +59,8 @@ const ComicDetails = ({ route }) => {
                     isShownComics ?
                         <View style={{ flex: 1 }}>
                             <WebView
-
+                                startInLoadingState={() => dispatch(setLoading(true))}
+                                onLoad={() => dispatch(setLoading(false))}
                                 source={{ uri: comicDetails[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
                                 style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                             />
@@ -76,8 +79,8 @@ const ComicDetails = ({ route }) => {
                                         />
                                     </View>
                                     <View>
-                                        <Text style={styles.textStyle}>Satfa sayısı: {comicDetails[0].pageCount} </Text>
-                                        <Text style={styles.textStyle}>{comicDetails[0].description} </Text>
+                                        <Text style={styles.textStyle}>Sayfa sayısı: {comicDetails[0].pageCount} </Text>
+                                        <Text style={styles.textStyle}>{comicDetails[0].description?.substring(0, 630)} </Text>
                                         {/* <Text style={styles.textStyle}>stories: {comicDetails[0].} </Text>
                                         <Text style={styles.textStyle}>series: {comicDetails[0].series.returned}</Text>
                                         <Text style={styles.textStyle}>events: {comicDetails[0].events.returned}</Text>*/}
@@ -94,11 +97,14 @@ const ComicDetails = ({ route }) => {
                                         onPress={() => setIsShownComics(true)} />
                                 </View>
                                 <View>
-                                    {/* <Panel
+
+
+                                    {/* <ComicPanelCreators
                                         data={comicDetails}
-                                        characterId={route.params.characterId}
-                                    />
-                                    buraya panel yapıcaz */}
+                                        id={route.params.comicId}
+                                      
+                                    /> */}
+
                                 </View>
 
                             </View>
@@ -108,7 +114,7 @@ const ComicDetails = ({ route }) => {
                             </View>
 
             }
-        </View>
+        </ScrollView>
 
     )
 }
