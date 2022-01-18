@@ -39,8 +39,8 @@ const Card = ({ data, where }) => {
 
                         <View>
                             <Text style={styles.textStyle}>Sayfa sayısı: {data[0].pageCount} </Text>
-                            <Text style={styles.textStyle}>{data[0].description?.substring(0, 630)} </Text>
-
+                            <Text style={styles.textStyle}>{data[0].description?.substring(0, 480)} </Text>
+                            {/* // buraya bir düzenleme yapman gerekecek  */}
                         </View>
 
                 }

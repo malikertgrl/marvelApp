@@ -44,15 +44,17 @@ const Panel = ({ data, id, navigation }) => {
                 data={characterComics}
                 renderItem={({ item }) => {
                     return (
-                        <View style={[styles.renderItemContainer, { height: Layout.windowHeight / 3, width: Layout.windowWidth / 2 + 100, }]}>
-
-                            <Text style={styles.textStyle}>{item.title}</Text>
+                        <View>
 
                             <TouchableOpacity onPress={() => navigation.navigate("ComicDetails", { comicId: item.id })}>
-                                <Text style={styles.textStyle}>{item.characters.items.map(x => x.name)}</Text>
-                                {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
-                                {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
-                                {/* <FlatList
+                                <View style={[styles.renderItemContainer, { height: Layout.windowHeight / 3 - 30, width: Layout.windowWidth / 2 + 100, }]}>
+                                    <Text style={[{ fontWeight: "bold" }, styles.textStyle]}>{item.title}</Text>
+
+                                    <Text style={styles.textStyle}>Characters</Text>
+                                    <Text style={[styles.textStyle]}>{item.characters.items.map(x => x.name)}</Text>
+                                    {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
+                                    {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
+                                    {/* <FlatList
                                     data={characterComics}
                                     renderItem={({ item }) => {
                                         return (
@@ -66,7 +68,7 @@ const Panel = ({ data, id, navigation }) => {
 
 
 
-                                {/* <View style={{ alignItems: "center" }}>
+                                    {/* <View style={{ alignItems: "center" }}>
                                     <Image
                                         style={{ borderRadius: 5, width: Layout.windowWidth / 2 - 30, height: Layout.windowHeight / 2 - 150, }} // resizeMode: "contain" 
                                         source={{
@@ -84,8 +86,11 @@ const Panel = ({ data, id, navigation }) => {
 
 
                                 </View>*/}
+
+                                </View>
                             </TouchableOpacity>
                         </View>
+
                         // <View >
                         //     <Text>{item.title}</Text>
                         // </View>
