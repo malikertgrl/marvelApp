@@ -46,7 +46,7 @@ const ComicDetails = ({ route }) => {
     }
     // aşağıdaki komponent scrollview olduğunda webView doğru çalışmıyor 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
+        <View style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
 
 
 
@@ -114,7 +114,7 @@ const ComicDetails = ({ route }) => {
                             </View>
 
             }
-        </ScrollView>
+        </View>
 
     )
 }
