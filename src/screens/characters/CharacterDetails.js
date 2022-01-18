@@ -24,7 +24,7 @@ const CharacterDetails = ({ route }) => {
         dispatch(setLoading(true)) // şimdilik resim vs i routes ile aldığım için ekran geldikten sonra tekrar spinner açıyor
 
         getItem()
-        console.log("navi", route.params.navigation)
+        // console.log("navi", route.params.navigation)
         // characterDetail && console.log(JSON.stringify(characterDetail, null, 4))
 
 

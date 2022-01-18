@@ -24,7 +24,7 @@ const ComicDetails = ({ route }) => {
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         dispatch(setLoading(true))
-        console.log("comicsID", route.params.comicId)
+        // console.log("comicsID", route.params.comicId)
         getItem()
     }, [])
 
@@ -35,7 +35,7 @@ const ComicDetails = ({ route }) => {
             .then((response) => {
                 if (response) {
                     dispatch(setLoading(false))
-                    console.log("comicDetails", response)
+                    // console.log("comicDetails", response)
                     setComicDetails(response.data.results)
 
                 } else {
@@ -49,54 +49,65 @@ const ComicDetails = ({ route }) => {
     // aşağıdaki komponent scrollview olduğunda webView doğru çalışmıyor 
     return (
         <ScrollView style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
+            <View style={{ alignItems: "center" }}>
 
 
 
-            {
-                loading ?
-                    <View style={{ position: "relative", marginTop: Layout.windowHeight / 2 - 50 }}>
-                        <Spinner />
-                    </View>
-                    :
-                    isShownComics ?
-                        <View style={{ flex: 1 }}>
-                            <WebView
-                                startInLoadingState={() => dispatch(setLoading(true))}
-                                onLoad={() => dispatch(setLoading(false))}
-                                source={{ uri: comicDetails[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
-                                style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
-                            />
+
+                {
+                    loading ?
+                        <View style={{ position: "relative", marginTop: Layout.windowHeight / 2 - 50 }}>
+                            <Spinner />
                         </View>
                         :
-                        comicDetails.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
-                            <View style={styles.Card}>
-                                <Card
-                                    data={comicDetails}
-                                    where="ComicDetails"
+                        isShownComics ?
+                            <View style={{ flex: 1 }}>
+                                <WebView
+                                    startInLoadingState={() => dispatch(setLoading(true))}
+                                    onLoad={() => dispatch(setLoading(false))}
+                                    source={{ uri: comicDetails[0].urls[0].url }} // url ile marvel profiline gidebiliyoruz
+                                    style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                                 />
+                            </View>
+                            :
+                            comicDetails.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
+                                <View style={styles.Card}>
+                                    <Card
+                                        data={comicDetails}
+                                        where="ComicDetails"
+                                    />
 
-                                <View>
-                                    <CustomButton
-                                        backgroundColor="#7f0000"
-                                        onPress={() => setIsShownComics(true)} />
-                                </View>
-                                <View>
-                                    <View style={{ marginTop: 15 }}>
-                                        <Creators data={comicDetails} />
+                                    <View>
+                                        <CustomButton
+                                            backgroundColor="#7f0000"
+                                            onPress={() => setIsShownComics(true)} />
+                                    </View>
+                                    <View style={{ alignItems: "center" }}>
+                                        <View>
+                                            <Creators data={comicDetails} />
+
+                                        </View>
+
+                                        <View>
+                                            <ComicCharacterList
+                                                comicId={route.params.comicId}
+                                                navigation={route.params.navigation} />
+                                        </View>
+
+
+
 
                                     </View>
 
-                                    <ComicCharacterList />
-
+                                </View>
+                                :
+                                <View style={{ flex: 1, alignItems: "center" }}>
+                                    <Text style={styles.textStyle}> bir hata ile karşılaşıldı...!</Text>
                                 </View>
 
-                            </View>
-                            :
-                            <View style={{ flex: 1, alignItems: "center" }}>
-                                <Text style={styles.textStyle}> bir hata ile karşılaşıldı...!</Text>
-                            </View>
+                }
+            </View>
 
-            }
         </ScrollView>
 
     )
@@ -106,5 +117,5 @@ export default ComicDetails
 
 const styles = StyleSheet.create({
     textStyle: { color: Colors.white9, padding: 5 },
-    Card: { flex: 1, backgroundColor: Colors.comicBackColor, flex: 1, alignItems: "center", }
+    Card: { flex: 1, backgroundColor: Colors.comicBackColor, alignItems: "center", }
 })

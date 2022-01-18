@@ -4,7 +4,7 @@ import { Colors, Layout } from '../constants'
 
 
 
-const RenderComics = ({ onPress, item }) => {
+const RenderComics = ({ onPress, item, navigation }) => {
     return (
         <View style={[styles.renderItemContainer, { width: Layout.windowWidth / 2 - 10, height: Layout.windowHeight / 3 }]}>
 

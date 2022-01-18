@@ -16,18 +16,18 @@ const Creators = ({ data }) => {
     return (
         <View>
             {data[0].creators.items.length > 0 ?
-                <View style={[{ width: Layout.windowWidth / 2 + 100, }, styles.renderItemContainer]}>
+                <View style={[{ marginTop: 15, width: Layout.windowWidth / 2 + 100 }, styles.renderItemContainer]}>
                     <Text style={[{ fontWeight: "bold", fontSize: 18 }, styles.textStyle]}>Creators</Text>
 
                     <FlatList
                         data={creators}
                         renderItem={({ item }) => {
                             return (
-                                <View >
-                                    <View >
-                                        <Text style={styles.textStyle}>{`${item.name}   role: ${item.role}`}</Text>
-                                    </View>
+
+                                <View  >
+                                    <Text style={styles.textStyle}>{`${item.name}   role: ${item.role}`}</Text>
                                 </View>
+
 
                             )
                         }}
@@ -35,7 +35,7 @@ const Creators = ({ data }) => {
 
                 </View>
                 :
-                <View style={[{ width: Layout.windowWidth / 2 + 50, }, styles.renderItemContainer]}>
+                <View >
                     <Text style={[{ fontWeight: "bold", fontSize: 18 }, styles.textStyle]}>Creators Anonim</Text>
                 </View>
             }
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
         // justifyContent: "center",
-        margin: 5,
+        // marginVertical: 15,
         backgroundColor: Colors.comicCartColor
     }
 })

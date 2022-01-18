@@ -17,7 +17,7 @@ const Panel = ({ data, id, navigation }) => {
 
     useEffect(() => {
         getItem()
-        console.log("id", navigation,)
+        // console.log("id", navigation,)
 
     }, [])
 
@@ -52,48 +52,13 @@ const Panel = ({ data, id, navigation }) => {
 
                                     <Text style={styles.textStyle}>Characters</Text>
                                     <Text style={[styles.textStyle]}>{item.characters.items.map(x => x.name)}</Text>
-                                    {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
-                                    {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
-                                    {/* <FlatList
-                                    data={characterComics}
-                                    renderItem={({ item }) => {
-                                        return (
-                                            <View>
-                                                <Text style={styles.textStyle}>{item.characters.items.name}</Text>
 
-                                            </View>
-                                        )
-                                    }}
-                                /> */}
-
-
-
-                                    {/* <View style={{ alignItems: "center" }}>
-                                    <Image
-                                        style={{ borderRadius: 5, width: Layout.windowWidth / 2 - 30, height: Layout.windowHeight / 2 - 150, }} // resizeMode: "contain" 
-                                        source={{
-                                            uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
-                                        }}
-                                    />
-                                </View>
-                                <View>
-
-                                    <Text >{item.description && `\n${item.description}`}</Text>
-                                     <Text style={styles.textStyle}>comics: {item.comics.returned}</Text>
-                                    <Text style={styles.textStyle}>series:{item.series.returned}</Text>
-                                    <Text style={styles.textStyle}>stories:{item.stories.returned}</Text>
-
-
-
-                                </View>*/}
 
                                 </View>
                             </TouchableOpacity>
                         </View>
 
-                        // <View >
-                        //     <Text>{item.title}</Text>
-                        // </View>
+
                     )
                 }}
             />

@@ -48,7 +48,7 @@ const Characters = ({ navigation }) => {
                     setMasterData(response.data.results)
                     dispatch(set_characters(response.data.results))
                 } else {
-                    console.log("allCharacter")
+                    console.log("allCharacter hata")
                     dispatch(setLoading(false))
                 }
 

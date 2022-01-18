@@ -44,13 +44,13 @@ const Comics = ({ navigation }) => {
         api.
             allComics().then(response => {
                 if (response) {
-                    console.log("comics", response)
+                    // console.log("comics", response)
                     dispatch(setLoading(false))
                     setFilteredData(response.data.results)
                     setMasterData(response.data.results)
                     dispatch(set_comics(response.data.results))
                 } else {
-                    console.log("allComics")
+                    console.log("allComics hata")
                     dispatch(setLoading(false))
                 }
 
@@ -84,7 +84,7 @@ const Comics = ({ navigation }) => {
                         renderItem={({ item }) => {
                             return (
                                 <RenderComics
-                                    onPress={() => navigation.navigate("ComicDetails", { comicId: item.id })}
+                                    onPress={() => navigation.navigate("ComicDetails", { comicId: item.id, navigation: navigation })}
                                     item={item} />
 
                             )
