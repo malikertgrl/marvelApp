@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLoading } from "../../redux/actions"
 import Spinner from "../../components/Spinner"
 import Panel from "../../components/Panel"
+import Card from "../../components/Card"
 
 
 const CharacterDetails = ({ route }) => {
@@ -72,28 +73,13 @@ const CharacterDetails = ({ route }) => {
                             style={{ width: Layout.windowWidth, height: Layout.windowHeight }}
                         /> :
                         characterDetail.length > 0 ?  // burada set ettiğimiz dizinin doluluğunu kontrol ediyoruz
-                            <View style={{ flex: 1, backgroundColor: Colors.backgroundColor, flex: 1, alignItems: "center", }}>
-                                <View style={{ margin: 20, alignItems: "center", width: Layout.windowWidth / 2 + 170, height: Layout.windowHeight / 2 + 150, backgroundColor: Colors.cartColor, borderRadius: 10 }}>
-                                    <View style={{ alignItems: "center", }}>
-                                        <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{characterDetail[0].name} </Text>
-                                        <Image
-                                            style={{ borderRadius: 5, width: Layout.windowWidth / 2 + 160, height: Layout.windowHeight / 3, }} // resizeMode: "contain" 
-                                            source={{
-                                                uri: `${characterDetail[0].thumbnail.path}.${characterDetail[0].thumbnail.extension}`,
-                                            }}
-                                        />
-                                    </View>
-                                    <View>
-                                        <Text style={styles.textStyle}>{characterDetail[0].description} </Text>
-                                        <Text style={styles.textStyle}>comics: {characterDetail[0].comics.returned} </Text>
-                                        <Text style={styles.textStyle}>stories: {characterDetail[0].stories.returned} </Text>
-                                        <Text style={styles.textStyle}>series: {characterDetail[0].series.returned}</Text>
-                                        <Text style={styles.textStyle}>events: {characterDetail[0].events.returned}</Text>
+                            <View style={styles.Card}>
 
+                                <Card
+                                    data={characterDetail}
+                                    where="CharacterDetails"
+                                />
 
-                                    </View>
-
-                                </View>
                                 <View>
                                     <CustomButton
                                         backgroundColor="#1d3557" // buraya bak bi 
@@ -125,5 +111,6 @@ const CharacterDetails = ({ route }) => {
 export default CharacterDetails
 
 const styles = StyleSheet.create({
-    textStyle: { color: Colors.white9, padding: 5 }
+    textStyle: { color: Colors.white9, padding: 5 },
+    Card: { flex: 1, backgroundColor: Colors.backgroundColor, flex: 1, alignItems: "center", }
 })
