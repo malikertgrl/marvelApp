@@ -19,7 +19,7 @@ const RenderComics = ({ onPress, item }) => {
                     />
                 </View>
                 <View>
-                    <Text style={styles.textStyle}>Sayfa Sayısı: {item.pageCount}</Text>
+                    <Text style={styles.textStyle}>Page Count: {item.pageCount}</Text>
 
                     <Text style={styles.textStyle} >{item.description?.length > 1 ? `${item.description.substr(0, 35)}...` : <></>}</Text>
                 </View>

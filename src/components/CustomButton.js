@@ -6,7 +6,7 @@ const CustomButton = ({ style, onPress, backgroundColor }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={[{ backgroundColor }, { borderRadius: 5, padding: 5, }]}>
-                <Text style={{ color: "#fff", fontSize: 20 }}>Marvel Profili </Text>
+                <Text style={{ color: "#fff", fontSize: 20 }}>Marvel Profile </Text>
             </View>
         </TouchableOpacity>
 

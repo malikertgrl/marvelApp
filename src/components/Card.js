@@ -9,15 +9,14 @@ const Card = ({ data, where }) => {
         <View style={{
             margin: 20,
             alignItems: "center",
-            width: Layout.windowWidth / 2 + 170,
-            height: Layout.windowHeight / 2 + 150,
+            width: Layout.windowWidth / 2 + 100,
             backgroundColor: where == "CharacterDetails" ? Colors.cartColor : Colors.comicCartColor,
             borderRadius: 10
         }}>
             <View style={{ alignItems: "center", }}>
                 <Text style={[styles.textStyle, { fontWeight: "bold", fontSize: 20 }]}>{where == "CharacterDetails" ? data[0].name : data[0].title} </Text>
                 <Image
-                    style={{ borderRadius: 5, width: Layout.windowWidth / 2 + 160, height: Layout.windowHeight / 3, }} // resizeMode: "contain" 
+                    style={{ resizeMode: "contain", borderRadius: 5, width: Layout.windowWidth / 2 + 160, height: Layout.windowHeight / 3, }} // resizeMode: "contain" 
                     source={{
                         uri: `${data[0].thumbnail.path}.${data[0].thumbnail.extension}`,
                     }}
@@ -38,8 +37,8 @@ const Card = ({ data, where }) => {
                         :
 
                         <View>
-                            <Text style={styles.textStyle}>Sayfa sayısı: {data[0].pageCount} </Text>
-                            <Text style={styles.textStyle}>{data[0].description?.substring(0, 480)} </Text>
+                            <Text style={styles.textStyle}>Page Count: {data[0].pageCount} </Text>
+                            <Text style={styles.textStyle}>{data[0].description} </Text>
                             {/* // buraya bir düzenleme yapman gerekecek  */}
                         </View>
 

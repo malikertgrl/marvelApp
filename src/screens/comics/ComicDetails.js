@@ -7,8 +7,9 @@ import { Colors, Layout } from "../../constants";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoading } from "../../redux/actions"
 import CustomButton from '../../components/CustomButton';
-import Panel from '../../components/Panel';
 import Card from "../../components/Card"
+import Creators from "../../components/Creators"
+import ComicCharacterList from "../../components/ComicCharacterList"
 
 
 
@@ -47,7 +48,7 @@ const ComicDetails = ({ route }) => {
     }
     // aşağıdaki komponent scrollview olduğunda webView doğru çalışmıyor 
     return (
-        <View style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
+        <ScrollView style={{ flex: 1, backgroundColor: Colors.comicBackColor }}>
 
 
 
@@ -80,13 +81,12 @@ const ComicDetails = ({ route }) => {
                                         onPress={() => setIsShownComics(true)} />
                                 </View>
                                 <View>
+                                    <View style={{ marginTop: 15 }}>
+                                        <Creators data={comicDetails} />
 
+                                    </View>
 
-                                    {/* <ComicPanelCreators
-                                        data={comicDetails}
-                                        id={route.params.comicId}
-                                      
-                                    /> */}
+                                    <ComicCharacterList />
 
                                 </View>
 
@@ -97,7 +97,7 @@ const ComicDetails = ({ route }) => {
                             </View>
 
             }
-        </View>
+        </ScrollView>
 
     )
 }

@@ -22,7 +22,7 @@ const Router = () => {
                 { headerShown: false, }}>
 
                 <Tab.Screen name="CharacterStack" component={CharacterStack} options={{
-                    tabBarLabel: 'Karakter',
+                    tabBarLabel: 'Characters',
                     tabBarActiveTintColor: "#1d3557",
 
                     tabBarIcon: ({ color, size }) => (
@@ -30,7 +30,7 @@ const Router = () => {
                     ),
                 }} />
                 <Tab.Screen name="ComicStack" component={ComicStack} options={{
-                    tabBarLabel: 'Çizgi Roman',
+                    tabBarLabel: 'Comics',
                     tabBarActiveTintColor: "#7f0000",
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome5 name="book-open" color={color} size={size} />

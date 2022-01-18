@@ -29,14 +29,14 @@ const CharacterStack = () => {
         >
             <Stack.Screen name="Characters" component={Characters} options={{ headerShown: false }} />
             <Stack.Screen name="CharacterDetails" component={CharacterDetails} options={{
-                title: 'Karakter Detayı'
+                title: 'Character Details'
             }}
 
             />
 
             <Stack.Screen name="Comics" component={Comics} options={{ headerShown: false }} />
             <Stack.Screen name="ComicDetails" component={ComicDetails} options={{
-                title: 'Çizgi Roman Detayı'
+                title: 'Comic Details'
             }}
             />
         </Stack.Navigator>
