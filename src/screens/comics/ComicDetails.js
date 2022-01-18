@@ -29,7 +29,6 @@ const ComicDetails = ({ route }) => {
     }, [])
 
     const getItem = () => {
-        const comicId = route.params.comicId
         api.
             comicDetail(route.params.comicId)
             .then((response) => {

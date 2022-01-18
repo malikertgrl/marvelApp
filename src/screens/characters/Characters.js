@@ -63,7 +63,7 @@ const Characters = ({ navigation }) => {
     }, [])
 
     return (
-        <View style={{ flex: 1, alignItems: "center", }}>
+        <View style={styles.container}>
 
             {loading ? <Spinner />
                 :
@@ -102,6 +102,6 @@ const Characters = ({ navigation }) => {
 export default Characters
 
 const styles = StyleSheet.create({
-    container: { backgroundColor: Colors.backgroundColor, },
+    container: { flex: 1, backgroundColor: Colors.backgroundColor },
 
 })

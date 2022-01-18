@@ -70,26 +70,31 @@ const Comics = ({ navigation }) => {
             {loading ? <Spinner />
                 :
                 <View style={styles.innerContainer}>
-                    <SearchBar
-                        value={search}
-                        placeHolder="Search Here..."
-                        onChangeText={text => searchFilter(text)}
-                    />
+                    <View>
+                        <SearchBar
+                            value={search}
+                            placeHolder="Search Here..."
+                            onChangeText={text => searchFilter(text)}
+                        />
+                    </View>
+
+                    <View>
+                        <FlatList
+                            keyExtractor={item => item.id}
+                            numColumns={2}
+                            data={filteredData}
+                            renderItem={({ item }) => {
+                                return (
+                                    <RenderComics
+                                        onPress={() => navigation.navigate("ComicDetails", { comicId: item.id, navigation: navigation })}
+                                        item={item} />
+
+                                )
+                            }}
+                        />
+                    </View>
 
 
-                    <FlatList
-                        keyExtractor={item => item.id}
-                        numColumns={2}
-                        data={filteredData}
-                        renderItem={({ item }) => {
-                            return (
-                                <RenderComics
-                                    onPress={() => navigation.navigate("ComicDetails", { comicId: item.id, navigation: navigation })}
-                                    item={item} />
-
-                            )
-                        }}
-                    />
 
                 </View>
             }
@@ -101,7 +106,7 @@ const Comics = ({ navigation }) => {
 export default Comics
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: "center", backgroundColor: Colors.comicBackColor },
+    container: { flex: 1, backgroundColor: Colors.comicBackColor },
     innerContainer: { backgroundColor: Colors.comicBackColor },
 
 

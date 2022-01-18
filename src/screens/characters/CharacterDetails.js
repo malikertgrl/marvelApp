@@ -34,10 +34,9 @@ const CharacterDetails = ({ route }) => {
 
 
     const getItem = () => {
-        const characterId = route.params.characterId;
 
         api.
-            characterDertail(characterId)
+            characterDertail(route.params.characterId)
             .then(response => {
                 if (response) {
                     setCharacterDetail(response.data.results)
