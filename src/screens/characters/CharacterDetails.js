@@ -24,6 +24,7 @@ const CharacterDetails = ({ route }) => {
         dispatch(setLoading(true)) // şimdilik resim vs i routes ile aldığım için ekran geldikten sonra tekrar spinner açıyor
 
         getItem()
+        console.log("navi", route.params.navigation)
         // characterDetail && console.log(JSON.stringify(characterDetail, null, 4))
 
 
@@ -89,6 +90,7 @@ const CharacterDetails = ({ route }) => {
                                     <Panel
                                         data={characterDetail}
                                         id={route.params.characterId}
+                                        navigation={route.params.navigation}
                                     />
                                     {/* buraya panel yapıcaz */}
                                 </View>

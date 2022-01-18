@@ -83,7 +83,7 @@ const Characters = ({ navigation }) => {
                             return (
                                 <RenderItem
                                     item={item}
-                                    onPress={() => navigation.navigate("CharacterDetails", { characterId: item.id })
+                                    onPress={() => navigation.navigate("CharacterDetails", { characterId: item.id, navigation: navigation })
 
                                     }
 

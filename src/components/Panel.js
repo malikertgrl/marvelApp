@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react
 import api from '../api'
 import { Colors, Layout } from "../constants"
 
-const Panel = ({ data, id, }) => {
+
+const Panel = ({ data, id, navigation }) => {
     const [characterComics, setCharacterComics] = useState([])
 
 
@@ -16,7 +17,7 @@ const Panel = ({ data, id, }) => {
 
     useEffect(() => {
         getItem()
-        console.log("id", id,)
+        console.log("id", navigation,)
 
     }, [])
 
@@ -43,11 +44,12 @@ const Panel = ({ data, id, }) => {
                 data={characterComics}
                 renderItem={({ item }) => {
                     return (
-                        <View style={[styles.renderItemContainer, { height: Layout.windowHeight / 4, width: Layout.windowWidth / 2 + 100, }]}>
+                        <View style={[styles.renderItemContainer, { height: Layout.windowHeight / 3, width: Layout.windowWidth / 2 + 100, }]}>
 
-                            <TouchableOpacity>
-                                <Text style={styles.textStyle}>{item.title}</Text>
-                                <Text style={styles.textStyle}>{item.characters.items[0].name}</Text>
+                            <Text style={styles.textStyle}>{item.title}</Text>
+
+                            <TouchableOpacity onPress={() => navigation.navigate("ComicDetails", { comicId: item.id })}>
+                                <Text style={styles.textStyle}>{item.characters.items.map(x => x.name)}</Text>
                                 {/* <Text style={styles.textStyle}>{item.characters.items[1].name}</Text> */}
                                 {/* <Text style={styles.textStyle}>{item.characters.items[2].name}</Text> */}
                                 {/* <FlatList
